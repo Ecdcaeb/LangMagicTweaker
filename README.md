@@ -1,8 +1,10 @@
 ```zencode
+#debug
 #loader lang_magic_tweaker
+
 import mods.Hileb.lang_magic_tweaker.LangMagicTweaker;
 import mods.Hileb.lang_magic_tweaker.LangMagicTweaker$MagicLangContext;
-MagicLangPredicate;
+import mods.Hileb.lang_magic_tweaker.LangMagicTweaker$MagicLangPredicate;
 
 //Add for Word
 LangMagicTweaker.registerWord("hileb:word", "hileb", function(context as LangMagicTweaker$MagicLangContext){
@@ -15,7 +17,7 @@ LangMagicTweaker.registerKeyword("hileb:rain", "my gold!", function(context as L
 });
 
 //Add for regex
-LangMagicTweaker.registerRegex("hileb:diamond", "(?<![^\s_])diamond(?![^\s_])", function(context as LangMagicTweaker$MagicLangContext){
+LangMagicTweaker.registerRegex("hileb:diamond", "(?<![^\s_])diamond(?![^\s_])", function(context as     LangMagicTweaker$MagicLangContext){
     context.getPlayer().give(<minecraft:diamond>);
 });
 
