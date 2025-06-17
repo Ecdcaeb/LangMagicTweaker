@@ -1,11 +1,11 @@
 {
-	"package": "",
+	"package": "mods.Hileb.lang_magic_tweaker.mixin",
 	"required": true,
 	"refmap": "${mixin_refmap}",
 	"target": "@env(DEFAULT)",
 	"minVersion": "0.8.5",
 	"compatibilityLevel": "JAVA_8",
-	"mixins": [],
+	"mixins": ["MixinChatEventExecute"],
 	"server": [],
 	"client": []
 }
