@@ -89,6 +89,11 @@ public class LangMagicTweaker implements ILateMixinLoader {
         register(name, new MagicLang(context -> Pattern.matches(regex, context.getMessage()), function));
     }
 
+    @ZenMethod
+    public static MagicLang[] getAll(){
+        return LANGS.values().toArray(new MagicLang[0]);
+    }
+
     public static void handle(ServerChatEvent event) {
         MagicLangContext context = new MagicLangContext(event);
         for (MagicLang lang : LANGS.values()) {
@@ -101,8 +106,8 @@ public class LangMagicTweaker implements ILateMixinLoader {
     @ZenRegister
     @ZenClass
     public static class MagicLang {
-        private final MagicLangPredicate predicate;
-        private final MagicLangFunction function;
+        private MagicLangPredicate predicate;
+        private MagicLangFunction function;
 
         @ZenConstructor
         public MagicLang(MagicLangPredicate predicate, MagicLangFunction function){
@@ -119,6 +124,17 @@ public class LangMagicTweaker implements ILateMixinLoader {
         @ZenMethod
         public MagicLangPredicate getPredicate() {
             return predicate;
+        }
+
+        @ZenMethod
+        public void setFunction(MagicLangFunction function) {
+            this.function = function;
+        }
+
+
+        @ZenMethod
+        public void setPredicate(MagicLangPredicate predicate) {
+            this.predicate = predicate;
         }
     }
 

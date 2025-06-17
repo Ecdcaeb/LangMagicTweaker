@@ -1,21 +1,30 @@
-## TemplateDevEnv
-_For Kotlin see [TemplateDevEnvKt](https://github.com/CleanroomMC/TemplateDevEnvKt)_
+```zencode
+#loader lang_magic_tweaker
+import mods.Hileb.lang_magic_tweaker.LangMagicTweaker;
+import mods.Hileb.lang_magic_tweaker.LangMagicTweaker$MagicLangContext;
+MagicLangPredicate;
 
-Template workspace for modding Minecraft 1.12.2. Licensed under MIT, it is made for public use.
+//Add for Word
+LangMagicTweaker.registerWord("hileb:word", "hileb", function(context as LangMagicTweaker$MagicLangContext){
+    context.getPlayer().sendChat("Hello! I am Hileb!!!");
+});
 
-This template runs on Java 21! Currently utilizies **Gradle 8.12** + **[RetroFuturaGradle](https://github.com/GTNewHorizons/RetroFuturaGradle) 1.4.1** + **Forge 14.23.5.2847**.
+//Add for Keyword
+LangMagicTweaker.registerKeyword("hileb:rain", "my gold!", function(context as LangMagicTweaker$MagicLangContext){
+    context.getPlayer().give(<minecraft:gold_ingot>);
+});
 
-With **coremod and mixin support** that is easy to configure.
+//Add for regex
+LangMagicTweaker.registerRegex("hileb:diamond", "(?<![^\s_])diamond(?![^\s_])", function(context as LangMagicTweaker$MagicLangContext){
+    context.getPlayer().give(<minecraft:diamond>);
+});
 
-### Instructions:
+LangMagicTweaker.unregister("yanling:fool"); // "屁屁墨"
 
-1. Click `use this template` at the top.
-2. Clone the repository that you have created with this template to your local machine.
-3. Make sure IDEA is using Java 21 for Gradle before you sync the project. Verify this by going to IDEA's `Settings > Build, Execution, Deployment > Build Tools > Gradle > Gradle JVM`.
-4. Open the project folder in IDEA. When prompted, click "Load Gradle Project" as it detects the `build.gradle`, if you weren't prompted, right-click the project's `build.gradle` in IDEA, select `Link Gradle Project`, after completion, hit `Refresh All` in the gradle tab on the right.
-5. Run gradle tasks such as `runClient` and `runServer` in the IDEA gradle tab, or use the auto-imported run configurations like `1. Run Client`.
-
-### Notes:
-- Dependencies script in [gradle/scripts/dependencies.gradle](gradle/scripts/dependencies.gradle), explanations are commented in the file.
-- Publishing script in [gradle/scripts/publishing.gradle](gradle/scripts/publishing.gradle).
-- When writing Mixins on IntelliJ, it is advisable to use latest [MinecraftDev Fork for RetroFuturaGradle](https://github.com/eigenraven/MinecraftDev/releases).
+for lang in LangMagicTweaker.getAll() {
+	LangMagicTweaker$MagicLangPredicate p = lang.getPredicate();
+    lang.setPredicate(function(context as LangMagicTweaker$MagicLangContext){
+        return context.getPlayer().xp > 100 && p.test(context);
+    } as bool)
+}
+```
