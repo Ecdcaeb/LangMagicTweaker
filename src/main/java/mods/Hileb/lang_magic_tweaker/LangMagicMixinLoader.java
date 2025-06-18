@@ -9,14 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
-@Mod(modid = Tags.MOD_ID, name = Tags.MOD_NAME, version = Tags.VERSION)
 public class LangMagicMixinLoader implements zone.rong.mixinbooter.ILateMixinLoader {
-    public static final Logger LOGGER = LogManager.getLogger(Tags.MOD_NAME);
-
-    @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        crafttweaker.CraftTweakerAPI.tweaker.loadScript(false, Tags.MOD_ID);
-    }
 
     @Override
     public List<String> getMixinConfigs() {
