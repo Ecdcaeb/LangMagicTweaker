@@ -37,4 +37,20 @@ public class LangMagic {
     public void setPredicate(LangMagicPredicate predicate) {
         this.predicate = predicate;
     }
+
+    @ZenMethod
+    public LangMagic appendPredicate(LangMagicPredicate predicate) {
+        this.setPredicate(this.getPredicate().add(predicate));
+        return this;
+    }
+
+    @ZenMethod
+    public LangMagic appendFunction(final LangMagicFunction function) {
+        final LangMagicFunction function0 = this.function;
+        this.function = (context) -> {
+            function0.exec(context);
+            function.exec(context);
+        };
+        return this;
+    }
 }

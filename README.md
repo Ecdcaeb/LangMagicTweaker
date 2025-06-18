@@ -34,4 +34,8 @@ LangMagicTweaker.register("hileb:xp", LangMagic(function(context as LangMagicCon
 );
 
 LangMagicTweaker.get("yanling:catch").setPredicate(LangMagicPredicate.ofKeyword("catch"));
+
+LangMagicTweaker.get("yanling:thunderstorm").appendPredicate(function(context as LangMagicContext) as bool {
+		return context.world.isRaining();
+});
 ```

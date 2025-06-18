@@ -25,6 +25,7 @@ public interface LangMagicPredicate {
         return context -> LangMagicTweaker.stringMatches(regex, context.getMessage());
     }
 
+    @ZenMethod
     @ZenOperator(OperatorType.ADD)
     public LangMagicPredicate add(final LangMagicPredicate predicate) {
         return (context) -> this.test(context) && predicate.test(context);
