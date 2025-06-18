@@ -71,7 +71,7 @@ public class LangMagicTweaker{
 
     @ZenMethod
     public static void registerRegex(String name, String regex, LangMagicFunction function) {
-        register(name, new LangMagic(context -> Pattern.matches(regex, context.getMessage()), function));
+        register(name, new LangMagic(context -> stringMatches(regex, context.getMessage()), function));
     }
 
     @ZenMethod
