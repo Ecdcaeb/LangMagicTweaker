@@ -1,8 +1,6 @@
 package mods.Hileb.lang_magic_tweaker;
 
-import stanhebben.zenscript.annotations.ZenClass;
-import stanhebben.zenscript.annotations.ZenMethod;
-import stanhebben.zenscript.annotations.ZenConstructor;
+import stanhebben.zenscript.annotations.*;
 import crafttweaker.annotations.ZenRegister;
 
 @ZenRegister
@@ -26,4 +24,11 @@ public interface LangMagicPredicate {
     public static LangMagicPredicate ofRegex(String regex){
         return context -> LangMagicTweaker.stringMatches(regex, context.getMessage());
     }
+
+    @ZenOperator(OperatorType.ADD)
+    public LangMagicPredicate add(final LangMagicPredicate predicate) {
+        return (context) -> this.test(context) && predicate.test(context);
+    }
+
+
 }
