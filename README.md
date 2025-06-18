@@ -1,10 +1,12 @@
 ```zencode
 #debug
-#loader lang_magic_tweaker
 
 import mods.Hileb.lang_magic_tweaker.LangMagicTweaker;
 import mods.Hileb.lang_magic_tweaker.LangMagicContext;
 import mods.Hileb.lang_magic_tweaker.LangMagicPredicate;
+import crafttweaker.item.IItemStack;
+import crafttweaker.oredict.IOreDict;
+import mods.Hileb.lang_magic_tweaker.LangMagic;
 
 //Add for Word
 LangMagicTweaker.registerWord("hileb:word", "hileb", function(context as LangMagicContext){
@@ -13,20 +15,23 @@ LangMagicTweaker.registerWord("hileb:word", "hileb", function(context as LangMag
 
 //Add for Keyword
 LangMagicTweaker.registerKeyword("hileb:rain", "my gold!", function(context as LangMagicContext){
-    context.getPlayer().give(<minecraft:gold_ingot>);
+    context.getPlayer().give(<ore:ingotIron>.firstItem);
 });
 
 //Add for regex
-LangMagicTweaker.registerRegex("hileb:diamond", "(?<![^\s_])diamond(?![^\s_])", function(context as LangMagicContext){
-    context.getPlayer().give(<minecraft:diamond>);
+LangMagicTweaker.registerRegex("hileb:diamond", "(?<![a-zA-Z])diamond(?![a-zA-Z])", function(context as LangMagicContext){
+    context.getPlayer().give(<ore:dirt>.firstItem * 16);
 });
 
 LangMagicTweaker.unregister("yanling:fool"); // "屁屁墨"
 
-for lang in LangMagicTweaker.getAll() {
-	LangMagicPredicate p = lang.getPredicate();
-    lang.setPredicate(function(context as LangMagicContext){
-        return context.getPlayer().xp > 100 && p.test(context);
-    } as bool);
-}
+LangMagicTweaker.register("hileb:xp", LangMagic(function(context as LangMagicContext) as bool {
+		return LangMagicTweaker.stringMatches("(?<![a-zA-Z])xp(?![a-zA-Z])", context.getMessage())
+			&& context.getPlayer().xp < 10000;
+	} , function(context as LangMagicContext){
+    		context.getPlayer().xp = context.getPlayer().xp + 100;
+	})
+);
+
+LangMagicTweaker.get("yanling:catch").setPredicate(LangMagicContext.ofKeyword("catch"));
 ```
