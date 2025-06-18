@@ -11,4 +11,19 @@ import crafttweaker.annotations.ZenRegister;
 public interface LangMagicPredicate {
     @ZenMethod
     boolean test(LangMagicContext context);
+
+    @ZenMethod
+    public static LangMagicPredicate ofWord(String word){
+        return context -> word.equals(context.getMessage());
+    }
+
+    @ZenMethod
+    public static LangMagicPredicate ofKeywork(String word){
+        return context -> context.getMessage().contains(word);
+    }
+
+    @ZenMethod
+    public static LangMagicPredicate ofRegex(String word){
+        return context -> LangMagicTweaker.stringMatches(regex, context.getMessage());
+    }
 }

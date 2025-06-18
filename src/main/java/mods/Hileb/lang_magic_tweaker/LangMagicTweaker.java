@@ -61,17 +61,17 @@ public class LangMagicTweaker{
 
     @ZenMethod
     public static void registerWord(String name, String word, LangMagicFunction function) {
-        register(name, new LangMagic(context -> word.equals(context.getMessage()), function));
+        register(name, new LangMagic(LangMagicPredicate.ofWord(word), function));
     }
 
     @ZenMethod
     public static void registerKeyword(String name, String word, LangMagicFunction function) {
-        register(name, new LangMagic(context -> context.getMessage().contains(word), function));
+        register(name, new LangMagic(LangMagicPredicate.ofKeywork(word), function));
     }
 
     @ZenMethod
     public static void registerRegex(String name, String regex, LangMagicFunction function) {
-        register(name, new LangMagic(context -> stringMatches(regex, context.getMessage()), function));
+        register(name, new LangMagic(LangMagicPredicate.ofRegex(word), function));
     }
 
     @ZenMethod
