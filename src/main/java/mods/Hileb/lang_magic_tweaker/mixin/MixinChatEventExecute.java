@@ -9,7 +9,7 @@ import mods.Hileb.lang_magic_tweaker.LangMagicTweaker;
 @Mixin(com.MIE.Language_arts.core.ChatEventExecute.class)
 public abstract class MixinChatEventExecute {
 
-    @Inject(method = "Chat", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "Chat", at = @At("HEAD"), cancellable = true, remap = false)
     private static void overwriteChat(net.minecraftforge.event.ServerChatEvent evt, CallbackInfo ci){
         LangMagicTweaker.handle(evt);
         ci.cancel();
