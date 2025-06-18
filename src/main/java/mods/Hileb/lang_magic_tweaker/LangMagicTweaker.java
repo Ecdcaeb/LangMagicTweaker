@@ -66,7 +66,7 @@ public class LangMagicTweaker{
 
     @ZenMethod
     public static void registerKeyword(String name, String word, LangMagicFunction function) {
-        register(name, new LangMagic(LangMagicPredicate.ofKeywork(word), function));
+        register(name, new LangMagic(LangMagicPredicate.ofKeyword(word), function));
     }
 
     @ZenMethod

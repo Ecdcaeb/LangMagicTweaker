@@ -18,7 +18,7 @@ public interface LangMagicPredicate {
     }
 
     @ZenMethod
-    public static LangMagicPredicate ofKeywork(String word){
+    public static LangMagicPredicate ofKeyword(String word){
         return context -> context.getMessage().contains(word);
     }
 
