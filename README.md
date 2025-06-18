@@ -38,4 +38,21 @@ LangMagicTweaker.get("yanling:catch").setPredicate(LangMagicPredicate.ofKeyword(
 LangMagicTweaker.get("yanling:thunderstorm").appendPredicate(function(context as LangMagicContext) as bool {
 		return context.world.isRaining();
 });
+
+/**
+Note:
+
+屁屁墨	yanling:fool
+红寡妇	yanling:score
+悬浮术	yanling:fly
+悬浮射线	yanling:ray
+木灵回春术	yanling:heal
+牛魔大力功	yanling:force
+捕捉	yanling:catch
+雷击术	yanling:thunder
+强化术	yanling:strengthen
+大雷暴	yanling:thunderstorm
+射箭	yanling:arrow
+万象天引	yanling:sky
+*/
 ```
