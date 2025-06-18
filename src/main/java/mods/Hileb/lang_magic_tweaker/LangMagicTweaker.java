@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 @ZenRegister
-@ZenClass
+@ZenClass("mods.Hileb.lang_magic_tweaker.LangMagicTweaker")
 public class LangMagicTweaker{
     
     public static final Map<ResourceLocation, LangMagic> LANGS = new HashMap<>();

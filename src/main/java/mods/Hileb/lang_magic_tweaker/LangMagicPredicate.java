@@ -6,7 +6,7 @@ import stanhebben.zenscript.annotations.ZenConstructor;
 import crafttweaker.annotations.ZenRegister;
 
 @ZenRegister
-@ZenClass
+@ZenClass("mods.Hileb.lang_magic_tweaker.LangMagicPredicate")
 @FunctionalInterface
 public interface LangMagicPredicate {
     @ZenMethod

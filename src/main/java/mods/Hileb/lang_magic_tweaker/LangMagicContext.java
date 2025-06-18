@@ -12,7 +12,7 @@ import crafttweaker.api.player.IPlayer;
 import net.minecraftforge.event.ServerChatEvent;
 
 @ZenRegister
-@ZenClass
+@ZenClass("mods.Hileb.lang_magic_tweaker.LangMagicContext")
 public class LangMagicContext {
         
     private final ServerChatEvent event;
