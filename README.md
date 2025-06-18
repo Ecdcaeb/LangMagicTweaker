@@ -33,5 +33,5 @@ LangMagicTweaker.register("hileb:xp", LangMagic(function(context as LangMagicCon
 	})
 );
 
-LangMagicTweaker.get("yanling:catch").setPredicate(LangMagicContext.ofKeyword("catch"));
+LangMagicTweaker.get("yanling:catch").setPredicate(LangMagicPredicate.ofKeyword("catch"));
 ```
