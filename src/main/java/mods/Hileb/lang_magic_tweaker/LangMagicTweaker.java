@@ -46,7 +46,7 @@ public class LangMagicTweaker implements ILateMixinLoader {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        CraftTweakerAPI.tweaker.loadScript(false, MODID);
+        CraftTweakerAPI.tweaker.loadScript(false, Tags.MOD_ID);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class LangMagicTweaker implements ILateMixinLoader {
     }
 
     
-    public static final Map<ResourceLocation, MagicLang> LANGS = HashMap.newHashMap(10);
+    public static final Map<ResourceLocation, MagicLang> LANGS = new HashMap<>();
 
     @ZenMethod
     public static void unregister(String name) {
@@ -222,7 +222,7 @@ public class LangMagicTweaker implements ILateMixinLoader {
             com.MIE.Language_arts.magic.Seize.seize(context.getEntityPlayer());
         });
         registerKeyword("yanling:thunder", "雷击术", context -> {
-            com.MIE.Language_arts.magic.Thunder.thun(player);
+            com.MIE.Language_arts.magic.Thunder.thun(context.getEntityPlayer());
         });
         registerKeyword("yanling:strengthen", "强化术", context -> {
             context.getEntityPlayer().addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 500, 5, true, true));
@@ -230,7 +230,7 @@ public class LangMagicTweaker implements ILateMixinLoader {
             context.getEntityPlayer().addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 500, 5, true, true));
         });
         registerKeyword("yanling:thunderstorm", "大雷暴", context -> {
-            com.MIE.Language_arts.magic.Thunderstorm.thunder(player);
+            com.MIE.Language_arts.magic.Thunderstorm.thunder(context.getEntityPlayer());
         });
         registerKeyword("yanling:arrow","射箭", context -> {
             Items.BOW.onPlayerStoppedUsing(new ItemStack(Items.BOW), context.getEntityPlayer().world, context.getEntityPlayer(), 10000);
