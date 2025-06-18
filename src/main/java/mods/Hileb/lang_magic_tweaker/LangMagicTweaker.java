@@ -40,22 +40,7 @@ import java.util.regex.Pattern;
 @ZenRegister
 @ZenClass
 @Mod(modid = Tags.MOD_ID, name = Tags.MOD_NAME, version = Tags.VERSION)
-public class LangMagicTweaker implements ILateMixinLoader {
-
-    public static final Logger LOGGER = LogManager.getLogger(Tags.MOD_NAME);
-
-    @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        CraftTweakerAPI.tweaker.loadScript(false, Tags.MOD_ID);
-    }
-
-    @Override
-    public List<String> getMixinConfigs() {
-        List<String> str = new ArrayList<>();
-        str.add("mixins.lang_magic_tweaker.json");
-        return str;
-    }
-
+public class LangMagicTweaker{
     
     public static final Map<ResourceLocation, MagicLang> LANGS = new HashMap<>();
 
