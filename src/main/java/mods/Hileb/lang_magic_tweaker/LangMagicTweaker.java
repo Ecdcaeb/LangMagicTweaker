@@ -71,7 +71,7 @@ public class LangMagicTweaker{
 
     @ZenMethod
     public static void registerRegex(String name, String regex, LangMagicFunction function) {
-        register(name, new LangMagic(LangMagicPredicate.ofRegex(word), function));
+        register(name, new LangMagic(LangMagicPredicate.ofRegex(regex), function));
     }
 
     @ZenMethod

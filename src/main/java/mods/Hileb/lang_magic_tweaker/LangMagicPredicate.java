@@ -23,7 +23,7 @@ public interface LangMagicPredicate {
     }
 
     @ZenMethod
-    public static LangMagicPredicate ofRegex(String word){
+    public static LangMagicPredicate ofRegex(String regex){
         return context -> LangMagicTweaker.stringMatches(regex, context.getMessage());
     }
 }
