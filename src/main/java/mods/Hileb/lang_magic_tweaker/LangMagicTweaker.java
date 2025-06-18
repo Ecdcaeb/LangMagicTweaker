@@ -79,6 +79,11 @@ public class LangMagicTweaker{
         return LANGS.values().toArray(new LangMagic[0]);
     }
 
+    @ZenMethod
+    public static boolean stringMatches(String reg, String msg){
+        return Pattern.compile(reg).matcher(msg).find();
+    }
+
     public static void handle(ServerChatEvent event) {
         LangMagicContext context = new LangMagicContext(event);
         for (LangMagic lang : LANGS.values()) {
