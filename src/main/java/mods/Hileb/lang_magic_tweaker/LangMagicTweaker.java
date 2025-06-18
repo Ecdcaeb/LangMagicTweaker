@@ -41,7 +41,7 @@ import java.util.regex.Pattern;
 @ZenClass
 public class LangMagicTweaker{
     
-    public static final Map<ResourceLocation, MagicLang> LANGS = new HashMap<>();
+    public static final Map<ResourceLocation, LangMagic> LANGS = new HashMap<>();
 
     @ZenMethod
     public static void unregister(String name) {
@@ -49,129 +49,42 @@ public class LangMagicTweaker{
     }
 
     @ZenMethod
-    public static MagicLang get(String name) {
+    public static LangMagic get(String name) {
         return LANGS.get(new ResourceLocation(name));
     }
 
     @ZenMethod
-    public static void register(String name, MagicLang lang) {
+    public static void register(String name, LangMagic lang) {
         LANGS.put(new ResourceLocation(name), lang);
     }
 
     @ZenMethod
-    public static void registerWord(String name, String word, MagicLangFunction function) {
-        register(name, new MagicLang(context -> word.equals(context.getMessage()), function));
+    public static void registerWord(String name, String word, LangMagicFunction function) {
+        register(name, new LangMagic(context -> word.equals(context.getMessage()), function));
     }
 
     @ZenMethod
-    public static void registerKeyword(String name, String word, MagicLangFunction function) {
-        register(name, new MagicLang(context -> context.getMessage().contains(word), function));
+    public static void registerKeyword(String name, String word, LangMagicFunction function) {
+        register(name, new LangMagic(context -> context.getMessage().contains(word), function));
     }
 
     @ZenMethod
-    public static void registerRegex(String name, String regex, MagicLangFunction function) {
-        register(name, new MagicLang(context -> Pattern.matches(regex, context.getMessage()), function));
+    public static void registerRegex(String name, String regex, LangMagicFunction function) {
+        register(name, new LangMagic(context -> Pattern.matches(regex, context.getMessage()), function));
     }
 
     @ZenMethod
-    public static MagicLang[] getAll(){
-        return LANGS.values().toArray(new MagicLang[0]);
+    public static LangMagic[] getAll(){
+        return LANGS.values().toArray(new LangMagic[0]);
     }
 
     public static void handle(ServerChatEvent event) {
-        MagicLangContext context = new MagicLangContext(event);
-        for (MagicLang lang : LANGS.values()) {
+        LangMagicContext context = new LangMagicContext(event);
+        for (LangMagic lang : LANGS.values()) {
             if (lang.getPredicate().test(context)) {
                 lang.getFunction().exec(context);
             }
         }
-    }
-
-    @ZenClass
-    public static class MagicLang {
-        private MagicLangPredicate predicate;
-        private MagicLangFunction function;
-
-        @ZenConstructor
-        public MagicLang(MagicLangPredicate predicate, MagicLangFunction function){
-            this.predicate = predicate;
-            this.function = function;
-        }
-
-        @ZenMethod
-        public MagicLangFunction getFunction() {
-            return function;
-        }
-
-
-        @ZenMethod
-        public MagicLangPredicate getPredicate() {
-            return predicate;
-        }
-
-        @ZenMethod
-        public void setFunction(MagicLangFunction function) {
-            this.function = function;
-        }
-
-
-        @ZenMethod
-        public void setPredicate(MagicLangPredicate predicate) {
-            this.predicate = predicate;
-        }
-    }
-
-    @ZenClass
-    public static class MagicLangContext {
-        
-        private final ServerChatEvent event;
-        public MagicLangContext(ServerChatEvent event) {
-            this.event = event;
-        }
-
-        public ITextComponent getITextComponent() {
-            return event.getComponent();
-        }
-
-        @ZenMethod
-        public crafttweaker.api.text.ITextComponent getComponent() {
-            return CraftTweakerMC.getITextComponent(event.getComponent());
-        }
-
-
-        @ZenMethod
-        public String getMessage() {
-            return event.getMessage();
-        }
-
-
-        @ZenMethod
-        public String getUsername() {
-            return event.getUsername();
-        }
-
-        public EntityPlayerMP getEntityPlayer() {
-            return event.getPlayer();
-        }
-
-        @ZenMethod
-        public IPlayer getPlayer() {
-            return CraftTweakerMC.getIPlayer(event.getPlayer());
-        }
-    }
-
-    @ZenClass
-    @FunctionalInterface
-    public static interface MagicLangPredicate {
-        @ZenMethod
-        boolean test(MagicLangContext context);
-    }
-
-    @ZenClass
-    @FunctionalInterface
-    public static interface MagicLangFunction {
-        @ZenMethod
-        void exec(MagicLangContext context);
     }
 
     static {
