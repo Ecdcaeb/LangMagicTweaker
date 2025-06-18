@@ -15,7 +15,7 @@ public class LangMagicMixinLoader implements zone.rong.mixinbooter.ILateMixinLoa
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        CraftTweakerAPI.tweaker.loadScript(false, Tags.MOD_ID);
+        crafttweaker.CraftTweakerAPI.tweaker.loadScript(false, Tags.MOD_ID);
     }
 
     @Override
