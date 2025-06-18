@@ -27,7 +27,7 @@ public interface LangMagicPredicate {
 
     @ZenMethod
     @ZenOperator(OperatorType.ADD)
-    public LangMagicPredicate add(final LangMagicPredicate predicate) {
+    default LangMagicPredicate add(final LangMagicPredicate predicate) {
         return (context) -> this.test(context) && predicate.test(context);
     }
 
