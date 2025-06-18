@@ -87,7 +87,6 @@ public class LangMagicTweaker{
         }
     }
 
-    @ZenRegister
     @ZenClass
     public static class MagicLang {
         private MagicLangPredicate predicate;
@@ -122,7 +121,6 @@ public class LangMagicTweaker{
         }
     }
 
-    @ZenRegister
     @ZenClass
     public static class MagicLangContext {
         
@@ -162,7 +160,6 @@ public class LangMagicTweaker{
         }
     }
 
-    @ZenRegister
     @ZenClass
     @FunctionalInterface
     public static interface MagicLangPredicate {
@@ -170,7 +167,6 @@ public class LangMagicTweaker{
         boolean test(MagicLangContext context);
     }
 
-    @ZenRegister
     @ZenClass
     @FunctionalInterface
     public static interface MagicLangFunction {
